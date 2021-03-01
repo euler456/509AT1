@@ -23,13 +23,15 @@ class Main extends React.Component {
           <li><NavLink to="/" class="col">Home</NavLink></li>
           <li><NavLink to="/Sign" class="col ">Sign Up</NavLink></li>
           <li><NavLink to="/contact" class="col ">Contact</NavLink></li>
-          <li><NavLink to="/Setting" class="col ">contact</NavLink></li>
+          <li><NavLink to="/Setting" class="col ">Setting</NavLink></li>
+          <input id="search" type="text" placeholder="Search.."></input>
         </ul>
         <div id="content">
            <Route exact path="/" component={Home}/>
            <Route path="/Sign" component={Sign}/>
            <Route path="/contact" component={Contact}/>
            <Route path="/Setting" component={Setting}/>
+           <Route path="/password" component={password}/>
         </div>
         </div>
         </HashRouter>
@@ -61,6 +63,7 @@ class Home extends React.Component {
     );
   }
 }
+
 
 class Sign extends React.Component {
   render() {
@@ -102,33 +105,48 @@ class Setting extends React.Component {
     return (
       <div>
        
-         <h1>Sign Up</h1>
+         <h1>My profile</h1>
         <form action="https://localhost:9998/api.php?action=login" 
           method="POST" id="loginform">
-            <h4>Firstname</h4>
+            <h4> Firstname</h4>
             <input type="text" name="Firstname" placeholder="Firstname"
                id="Firstname" required></input><br/>
-           <h4>Lastname</h4>
+           <h4> Lastname</h4>
             <input type="text" name="Lastname" placeholder="Lastname"
                id="Lastname"  required></input><br />
-                <h4>email</h4>
+                <h4> email</h4>
             <input type="email" name="email" placeholder="email"
                id="regemail"  required></input><br />
-                <h4>number</h4>
+                <h4> number</h4>
             <input type="number" name="phone" placeholder="phone"
                id="regphone"  required></input><br />
-                <h4>username</h4>
+                <h4> username</h4>
             <input type="text" name="username" placeholder="user name"
                id="reguser" required></input><br />
-                <h4>password</h4>
+ <h4>Want to reset password?</h4>
+
+<button name="subject" type="submit" id="fat-btn" class="btn btn-success" >Save</button>   
+               
+     <button name="subject" type="submit" id="fat-btn" class="btn btn-success" ><NavLink to="/password" class="col ">password</NavLink></button>
+        </form>
+      </div>
+    );
+  }
+}
+class password extends React.Component {
+  render() {
+    return (
+      <div>
+         <h4>New password</h4>
             <input type="password" name="password" placeholder="password"
                id="regpass"  required></input>     <br /> 
                 <h4>Confirm password</h4>
+              
             <input type="password" name="Confirm" placeholder="Confirm password"
-               id="Confirm"  required></input>  <br />                      
-     <button name="subject" type="submit" id="fat-btn" class="btn btn-success" >Loggin</button>
-        </form>
-      </div>
+               id="Confirm"  required></input>  <br />   
+                <button name="subject" type="submit" id="fat-btn" class="btn btn-success" >Save</button>
+        </div>
+
     );
   }
 }
