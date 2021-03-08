@@ -1,11 +1,7 @@
 
 @media screen and (max-width: 600px){
 
-body {
-    padding: 10px;
-    margin: 0;
-    background-color: darkslategray;
-  }
+
  h2,h1{
     color: ghostwhite;
  }
@@ -53,5 +49,17 @@ body {
    
     width: 100%;
    padding: 20px;
+  }
+  
+  .dark-mode {
+    background-color:black;
+    color: white;
+  }
+  body{
+    background-color: darkgreen;
+  }
+
+  .blackBg {
+    background-color: black;
   }
 }

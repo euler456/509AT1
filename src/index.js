@@ -51,8 +51,9 @@ class Home extends React.Component {
         <h4>Xiao Long Bao</h4>
         <img src={XiaoLongBao} alt="XiaoLongBao"/>
         <p>Xiaolongbao is a type of Chinese steamed bun (baozi) from Jiangsu province, especially associated with Wuxi and Shanghai (Shanghai was formerly a part of Jiangsu province)</p>
+        
         <h4 class="order">Order:</h4>
-        <input type="number" name="order" class="order1" placeholder="0"></input>
+        <input type="number" name="order" class="order1" placeholder="0" ></input>
         <h4>Ribs</h4>
         <img src={Ribs} alt="Ribs"/>
         <p>Ribs of pork, beef, lamb, and venison are a cut of meat. The term ribs usually refers to the less meaty part of the chops, often cooked as a slab (not cut into separate ribs).</p>
@@ -135,12 +136,38 @@ class Sign extends React.Component {
     );
   }
 }
+const docBody = document.querySelector('body');
 class Setting extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {bgColored: false};
+    this.colorBackground = this.colorBackground.bind(this);
+    this.clearBackground = this.clearBackground.bind(this);
+  }
+  colorBackground() {
+    this.setState({bgColored: false});
+  }
+  clearBackground() {
+    this.setState({bgColored: true});
+  }
+  componentDidUpdate(prevState) {
+    const { bgColored } = this.state;
+    const className = 'blackBg';
+
+    if(prevState.bgColored !== bgColored){
+      bgColored ?
+        docBody.classList.add(className) :
+        docBody.classList.remove(className);
+    }
+  }
   render() {
     return (
       <div>
-       
          <h1>Edit My profile</h1>
+         <div>
+        <button><a href="#" onClick={() => this.colorBackground()}>Light mode</a></button>
+        <button><a href="#" onClick={() => this.clearBackground()}>Dark mode</a></button>
+      </div>
         <form action="https://localhost:9998/api.php?action=login" 
           method="POST" id="loginform">
             <h4> Firstname</h4>
