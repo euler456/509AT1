@@ -10,23 +10,33 @@ import {
   NavLink,
   HashRouter
 } from "react-router-dom";
-
+const green = '#006400';
+const black = '#000000';
 class Main extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = { color: green };
+    this.changeColor = this.changeColor.bind(this);
+  }
+  changeColor(){
+    const newColor = this.state.color == green ? black : green;
+    this.setState({ color: newColor })
+  }
   render() {
-    return (
     
-
+    return (
+      <div style={{background: this.state.color}}>
       <HashRouter>
+      
       <div class="container">
- 
-</div>
-      <div class="container">
-        <h1>Freshly Login</h1>
+        <h1 >Freshly Login</h1>
+    
         <ul id="header" class="row">
           <li><NavLink to="/" class="col">Home</NavLink></li>
           <li><NavLink to="/Login" class="col ">Login</NavLink></li>
           <li><NavLink to="/contact" class="col ">Contact</NavLink></li>
           <li><NavLink to="/Setting" class="col ">Setting</NavLink></li>
+          <li class="col "> <button id="dark" class="btn btn-light" onClick={this.changeColor}>Darkmode</button></li>
           <input id="search" type="text" placeholder="Search.."></input>
         </ul>
         <div id="content">
@@ -38,7 +48,9 @@ class Main extends React.Component {
            <Route path="/password" component={password}/>
         </div>
         </div>
+        
         </HashRouter>
+        </div>
     );
   }
 }
@@ -46,7 +58,7 @@ class Main extends React.Component {
 class Home extends React.Component {
   render() {
     return (
-      <div>
+      <div >
         <h2>Home</h2>
         <h4>Xiao Long Bao</h4>
         <img src={XiaoLongBao} alt="XiaoLongBao"/>
@@ -136,37 +148,15 @@ class Sign extends React.Component {
     );
   }
 }
-const docBody = document.querySelector('body');
-class Setting extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {bgColored: false};
-    this.colorBackground = this.colorBackground.bind(this);
-    this.clearBackground = this.clearBackground.bind(this);
-  }
-  colorBackground() {
-    this.setState({bgColored: false});
-  }
-  clearBackground() {
-    this.setState({bgColored: true});
-  }
-  componentDidUpdate(prevState) {
-    const { bgColored } = this.state;
-    const className = 'blackBg';
 
-    if(prevState.bgColored !== bgColored){
-      bgColored ?
-        docBody.classList.add(className) :
-        docBody.classList.remove(className);
-    }
-  }
+class Setting extends React.Component {
+ 
   render() {
+  
     return (
-      <div>
+      <div >
          <h1>Edit My profile</h1>
          <div>
-        <button><a href="#" onClick={() => this.colorBackground()}>Light mode</a></button>
-        <button><a href="#" onClick={() => this.clearBackground()}>Dark mode</a></button>
       </div>
         <form action="https://localhost:9998/api.php?action=login" 
           method="POST" id="loginform">
